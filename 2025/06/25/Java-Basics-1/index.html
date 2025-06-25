@@ -248,6 +248,12 @@
 <blockquote>
 <p>静态内部类，外部类.内部类&#x3D;new 外部类.内部类()，可以不需要实例化外部类就可以实例化内部类，不能访问外部类的非静态成员</p>
 </blockquote>
+<blockquote>
+<p>为什么静态成员只能和静态成员玩，静态成员不能主动访问非静态成员，而反过来非静态成员能主动访问静态成员呢？<br>原因：静态类是属于 class 的，class 在 JVM 被加载的时候就加载一次，是存储在方法区&#x2F;元空间中，没有上下文指针，所以无法访问非静态类（不知道是哪个 object 的）。</p>
+</blockquote>
+<blockquote>
+<p>为什么 main 方法是 static 的？<br>原因：当程序运行的时候，没有任何 object 被创建，如果 main 是非静态的，需要有 object 才能运行非静态方法，所以 main 方法只能是 static，属于 class，这样当程序运行的时候就能直接运行 main 方法</p>
+</blockquote>
 
         </div>
 
