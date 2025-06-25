@@ -143,12 +143,111 @@
         </header>
 
         <div class="post-content">
-            <p>The Java Basics X series are study notes for MIT 6.092, including basic java syntax.</p>
-<p>Java runs on a virtual machine, <strong>Java Virtual Machine</strong> (JVM).</p>
-<p>Java is more complex than Python while simpler than C++.</p>
-<p>The compiling process:<br>Source Code (.java) -&gt; javac -&gt; Byte Code (.class) -&gt; java</p>
-<p>Types: primitive and reference.</p>
-<p>Primitive type: basic java types, e.g. int, long, stored in the variable (stack)<br>Reference type: arrays and objects, stored the address of the content in variable, the real content is stored in heap.</p>
+            <p>The Java Basics X series are study notes for <a target="_blank" rel="noopener" href="https://ocw.mit.edu/courses/6-092-introduction-to-programming-in-java-january-iap-2010/">MIT 6.092</a>, specifically for basic java syntax.</p>
+<h4 id="Basic-Knowledge"><a href="#Basic-Knowledge" class="headerlink" title="Basic Knowledge:"></a>Basic Knowledge:</h4><ul>
+<li><p>Java runs on a virtual machine, <strong>Java Virtual Machine</strong> (JVM).</p>
+</li>
+<li><p>Java is more complex than Python while simpler than C++.</p>
+</li>
+<li><p>The compiling process:<br>Source Code (.java) -&gt; javac -&gt; Byte Code (.class) -&gt; java</p>
+</li>
+</ul>
+<h4 id="Types-primitive-and-reference"><a href="#Types-primitive-and-reference" class="headerlink" title="Types: primitive and reference."></a>Types: primitive and reference.</h4><ul>
+<li><p>Primitive type: basic java types, e.g. int, long, stored in the variable (stack)</p>
+</li>
+<li><p>Reference type: arrays and objects, stored the address of the content in variable (stack), the real content is stored in heap.</p>
+</li>
+</ul>
+<p>An array must be given a specific size:<br><code>int[] name = new int[5];</code></p>
+<p>Curly braces can be used to initialize an array:<br><code>int[] values = &#123; 12, 24, -23, 47&#125;;</code><br><code>int size = values.length</code> <code>size=4</code></p>
+<p>Different types have different operators rules:<br><code>double a = 2/3;</code> <code>a=0.0</code><br><code>int c = 5/2;</code> <code>c=2</code>, both are integers, integer division will cut the decimal part.<br><code>double c = 5.0/2.0;</code> <code>c=2.5</code>, both <code>5.0</code> and <code>2.0</code> are double, floating point division.<br><code>double c = 5/2.0;</code> <code>c=2.5</code><br><code>double c = 5.0/2;</code> <code>c=2.5</code>, one number is a double, so Java automatically converts the other to double.<br><code>double c = 5/2;</code> <code>c=2</code>, <code>5/2</code> is an integer division, the reuslt is <code>2</code>, then <code>2</code> is assigned to <code>c</code>, which is a double, thus the result is <code>2.0</code>.<br><code>double a = (doulbe)2/3;</code> <code>a=0.6666...</code>, integer <code>2</code> is converted to double <code>2.0</code>, then <code>2.0/3</code> is double division</p>
+<p>Variable Scope: variables live in the block ({}) where they are defined (scope).</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Scope</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] arguments)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> <span class="number">5</span>;                     <span class="comment">// x is declared here</span></span><br><span class="line">        <span class="keyword">if</span> (x == <span class="number">5</span>) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> <span class="number">6</span>;                <span class="comment">// cannot defined the same name x</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">y</span> <span class="operator">=</span> <span class="number">72</span>;               <span class="comment">// y is only available in if</span></span><br><span class="line">            System.out.println(<span class="string">&quot;x = &quot;</span> + x + <span class="string">&quot; y = &quot;</span> + y);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;x = &quot;</span> + x + <span class="string">&quot; y = &quot;</span> + y); <span class="comment">// y is not available</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Operators"><a href="#Operators" class="headerlink" title="Operators:"></a>Operators:</h4><ul>
+<li>Assignment: &#x3D;</li>
+<li>Addition: +</li>
+<li>Subtraction: -</li>
+<li>Multiplication: *</li>
+<li>Division: &#x2F;</li>
+<li>concatenation: string + string</li>
+</ul>
+<h4 id="while-for"><a href="#while-for" class="headerlink" title="while &amp; for:"></a>while &amp; for:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">while (condition) &#123;</span><br><span class="line">    statements</span><br><span class="line">&#125;</span><br><span class="line">for (initialization; condition; update) &#123;</span><br><span class="line">    statements</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>break</code> termates a <code>for</code> or <code>while</code> loop<br><code>continue</code> skips the current iteration of a loop and proceeds directly to the next iteration</p>
+<h4 id="class"><a href="#class" class="headerlink" title="class"></a>class</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ClassName</span>&#123;</span><br><span class="line">    String variable1;</span><br><span class="line">    <span class="type">int</span> variable2;</span><br><span class="line">    <span class="type">double</span> variable3; <span class="comment">//define the fields fo the class</span></span><br><span class="line">    ClassName[] myClass; <span class="comment">// you can even use other class</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ClassName</span><span class="params">()</span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;<span class="comment">//constructor, initialize the fields, if no arguments, default constructor</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ClassName</span><span class="params">(String stringName1, <span class="type">int</span> intNumber1)</span>&#123;</span><br><span class="line">        varialbe1=stringName1;</span><br><span class="line">        variable2=intNumber1;</span><br><span class="line">    &#125;<span class="comment">//constructor, initialize the fields and set the fields value</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">methods</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello World&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">ClassName</span> <span class="variable">myClass1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClassName</span>();</span><br><span class="line"><span class="type">ClassName</span> <span class="variable">myClass2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClassName</span>(<span class="string">&quot;class&quot;</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">myclass1.variable2; <span class="comment">// myclass1.variable2=1, accessing fields, Object.FIELDNAME</span></span><br><span class="line">myclass2.methods();<span class="comment">// calling methods, Object.METHODNAME([ARGUMENTS])</span></span><br></pre></td></tr></table></figure>
+
+<p>The object’s location is called a reference.<br>If comparing two instances of the same class, it is comparing their addresses.<br>When <code>MyClasss obj = new MyClass();</code>, <code>obj</code> is a reference, itself is in stack, all the fields of the <code>obj</code> is located in heap.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MyClass obj1 = new MyClass();</span><br><span class="line">MyClass obj2 = new MyClass();</span><br><span class="line">obj1 = obj2; // Now in the stack, both obj1 and obj2 point to the same object in the heap (originally assigned to obj2).</span><br><span class="line">             // The object that was originally referenced by obj1 becomes unreachable and is eligible for garbage collection.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="static-type-and-method"><a href="#static-type-and-method" class="headerlink" title="static type and method"></a>static type and method</h4><p>defined for the class declaration, not unique for each instance.</p>
+<ul>
+<li>the static fields belong to the class, not belong to specific instances</li>
+</ul>
+<p>What can be static?</p>
+<ul>
+<li>static variable&#x2F;field, belongs to class not instance, access by ClassName.FieldName</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Counter</span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">0</span>; <span class="comment">//static field (share across instance)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Counter</span><span class="params">()</span>&#123;</span><br><span class="line">        coun++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>static method, belongs to class not instance, cannot access instance field&#x2F;methods</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MathUtil</span>&#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">base</span> <span class="operator">=</span> <span class="number">10</span>; <span class="comment">//instance fields</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> <span class="title function_">multiply</span><span class="params">(<span class="type">int</span> x)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x * base; <span class="comment">//instance methods can access instance fields</span></span><br><span class="line">        <span class="keyword">return</span> x * square(x); <span class="comment">//instance methods can access static methods</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">square</span><span class="params">(<span class="type">int</span> x)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x * x;</span><br><span class="line">        <span class="comment">// return x * base; wrong, cannot access &#x27;base&#x27;</span></span><br><span class="line">        <span class="comment">// return multiply(x); wrong, cannot access &#x27;multiply()&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> MathUtil.square(<span class="number">4</span>);</span><br><span class="line">        System.out.println(result); <span class="comment">// 16</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>static block, execute once when the class is loaded, can only access static member</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Config</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> String appName;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="comment">// static block, execute when the class is loaded</span></span><br><span class="line">        appName = <span class="string">&quot;MyApp&quot;</span>;</span><br><span class="line">        System.out.println(<span class="string">&quot;Static block executed&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(Config.appName); <span class="comment">// execute the static block</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>static nested class, donot need to create outer class instance, cannot access outer class non-static member</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Outer</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Inner</span> &#123;</span><br><span class="line">        <span class="keyword">void</span> <span class="title function_">sayHello</span><span class="params">()</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Hello from static inner class&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        Outer.<span class="type">Inner</span> <span class="variable">inner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Outer</span>.Inner(); <span class="comment">// do not need the Outer instance</span></span><br><span class="line">        inner.sayHello();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Non-static methods can reference static methods, but not the other way around, why?</li>
+</ul>
+<ol>
+<li>static member belongs to class, non-static belongs to instance&#x2F;object.</li>
+<li>access static member: class.staticMember; access non-static member: object.non-staticMember</li>
+<li>memory allocation: when a class is loaded, static is in method while the non-static member is in heap when the object is created. A static member is existed when the class is loaded, even if no object of the class has been created. A non-static member is existed unless new an object.</li>
+<li>when a non-static member is exectued, it has a this pointer. Static member does not have. So non-static methods has context to access the static member while static does not.</li>
+<li>when the JVM initializes the class, the static methods is prepared (in methods area). Non-static member only exists when new an object.</li>
+</ol>
+<ul>
+<li>Why is main methods static?<br>When JVM runs, no object is created, so the main method must be executed by class itself, not object.</li>
+</ul>
+<h4 id="Reflection"><a href="#Reflection" class="headerlink" title="Reflection"></a>Reflection</h4><blockquote>
+<p>反思部分还是用中文为主，决定用 java 刷题，先用一个月左右把 java 的基础语法和一些基础数据结构过一遍，这次要求自己牢牢掌握</p>
+</blockquote>
+<blockquote>
+<p>6.092 的前面四章难度不大，几个八股文的知识点，JVM，编译过程，我感觉这里可能需要深入学习后才能融会贯通，后面关于静态成员就涉及到 JVM</p>
+</blockquote>
+<blockquote>
+<p>首先一个知识点事 primitive 和 reference 变量，基本类型就是常见的类型，int, long 等等，存储在 stack 中，stack 中直接就是存储真实数据；而引用类型有两种，数组和对象，在 stack 中存储的是指向堆的地址，堆中存放的是真正的数据。对于实例对象的字段，无论是基本类型还是引用类型，都放在堆中。静态字段在方法区&#x2F;元空间(Metaspace)中。</p>
+</blockquote>
+<blockquote>
+<p>对于精度，java 会自动靠齐高精度，也就是精度对齐，从小到大顺序是 byte, short&#x2F;char, int, long, float, double。对于编程语言中的算式，要从等号右边开始看，等号的右边部分从左往后看，然后再看等号左边。 例如 double c &#x3D; 5&#x2F;2,首先是，5 和 2 的整数除法，去掉小数点部分，得到结果 2，然后赋值给变量 c，c 是一个 doulbe 类型，所以结果变成 2.0。这样一个思考流程需要牢记。</p>
+</blockquote>
+<blockquote>
+<p>变量存活在{}中，if 中新声明的变量出了 if 就不能用了。</p>
+</blockquote>
+<blockquote>
+<p>静态成员，有四种，静态字段，静态方法，静态段，静态内部类</p>
+</blockquote>
+<blockquote>
+<p>静态字段，只属于 class，也就是不管你有实例 object 还是没有，不管你有多少个 object，静态字段只有一个，所有 object 共享</p>
+</blockquote>
+<blockquote>
+<p>静态方法，同理，只属于 class，静态方法只能访问静态字段，但一般的（也就是实例方法）可以访问静态方法和静态类，但静态方法不能访问实例方法</p>
+</blockquote>
+<blockquote>
+<p>静态段，当 class 执行的时候执行一次，用 static{}，里面只能访问静态成员</p>
+</blockquote>
+<blockquote>
+<p>静态内部类，外部类.内部类&#x3D;new 外部类.内部类()，可以不需要实例化外部类就可以实例化内部类，不能访问外部类的非静态成员</p>
+</blockquote>
 
         </div>
 
